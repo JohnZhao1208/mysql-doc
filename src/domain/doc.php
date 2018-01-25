@@ -18,11 +18,13 @@ mysqli_query($mysqli_conn, 'SET NAMES utf8');
 
 //取得所有的表名
 $table_result = mysqli_query($mysqli_conn, 'show tables');
+
 //取得所有的表
 $tables = array();
 while ($row = mysqli_fetch_array($table_result)) {
     $tables[]['TABLE_NAME'] = $row[0];
 }
+
 //循环取得所有表的备注及表中列消息
 foreach ($tables as $k => $v) {
     $sql = 'SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE `table_name` = "' . $v['TABLE_NAME'] . '" AND `table_schema` = "' . $database . '"';
